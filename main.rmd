@@ -1,9 +1,6 @@
 ---
 title: "December of 2020's Highs"
 output: html_notebook
-params:
-  a: 33.5
-  b: !r temps <- read.csv("weather.csv");average_high <- mean(temps[,2]);average_high
 ---
 
 #### Data was pulled from the NWS Omaha.
@@ -39,4 +36,4 @@ tempscht
 ```
 ## Almanac vs NWSOmaha
 
-The Old Farmer's Almanac 2021's December Average High Prediction is `r params$a`°F. Meanwhile, the calculated average high from NWS Omaha predictions is `r params$b`°F. It appears the astrometeorological prediction is below the observations of the NWS Office at Valley, NE.
+The Old Farmer's Almanac 2021's December Average High Prediction is 33.5°F. Meanwhile, the calculated average high from NWS Omaha predictions is `r average_high <- mean(temps[,2]);average_high`°F. It appears the astrometeorological prediction is below the observations of the NWS Office at Valley, NE.
