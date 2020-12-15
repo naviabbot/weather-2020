@@ -21,10 +21,10 @@ rownames(temps) = as.Date(as.character(temps$date), "%Y%m%d")
 
 ```{r}
 graph_it <- as.xts(temps[-1])
-dygraph(xts_temps, main = "Highs and Lows of the Month of December, 2020") %>%
+dygraph(graph_it, main = "Highs and Lows of the Month of December, 2020") %>%
   dyAxis("y", label = "Degrees Fahrenheit") %>%
-  dySeries("V2", label = "Highs") %>%
-  dySeries("V3", label = "Lows")
+  dySeries("high", label = "Highs") %>%
+  dySeries("low", label = "Lows")
 ```
 ## Table of Highs, Lows, and Averages
 All temps in Fahrenheit. Sorry Metric World.
