@@ -3,7 +3,7 @@ title: "December of 2020's Highs"
 output: html_notebook
 params:
   a: 33.5
-  b: !r mean(c(49,46,47,54,49,36,53,58,61,52,38,32,27,21))
+  b: !r temps <- read.csv("weather.csv");average_high <- mean(temps[,2]);average_high
 ---
 
 #### Data was pulled from the NWS Omaha.
@@ -18,20 +18,12 @@ library(dygraphs)
 
 ```{r message=FALSE,echo=FALSE}
 # craft data frame
-dates <- c("2020-12-01","2020-12-02","2020-12-03","2020-12-04","2020-12-05","2020-12-06","2020-12-07","2020-12-08","2020-12-09","2020-12-10","2020-12-11","2020-12-12","2020-12-13","2020-12-14")
-hi_temps <- c(49,46,47,54,49,36,53,58,61,52,38,32,27,21)
-lo_temps <- c(18,21,20,24,22,24,24,24,31,27,32,20,16,8)
-temps <- data.frame(
-  date = dates,
-  high_in_f = hi_temps,
-  low_in_f = lo_temps,
-  stringsAsFactors = FALSE
-)
+temps <- read.csv("weather.csv")
+rownames(temps) = as.Date(as.character(temps$date), "%Y%m%d")
 ```
 
-```{r echo=FALSE}
-zoo_temps <- (read.zoo("weather.csv", index.column = 1, sep=",", format="%Y-%m-%d"))
-xts_temps <-as.xts(zoo_temps)
+```{r}
+graph_it <- as.xts(temps[-1])
 dygraph(xts_temps, main = "Highs and Lows of the Month of December, 2020") %>%
   dyAxis("y", label = "Degrees Fahrenheit") %>%
   dySeries("V2", label = "Highs") %>%
@@ -39,10 +31,10 @@ dygraph(xts_temps, main = "Highs and Lows of the Month of December, 2020") %>%
 ```
 ## Table of Highs, Lows, and Averages
 All temps in Fahrenheit. Sorry Metric World.
-```{r echo=FALSE}
+```{r}
 tempscht <- temps %>%
-  mutate(avg_temp = (high_in_f + low_in_f)/2) %>%
-  rename("Date" = date, "Highs" = high_in_f, "Lows" = low_in_f, "Daily Avg" = avg_temp)
+  mutate(avg_temp = (high + low)/2) %>%
+  rename("Date" = date, "Highs" = high, "Lows" = low, "Daily Avg" = avg_temp)
 tempscht
 ```
 ## Almanac vs NWSOmaha
