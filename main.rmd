@@ -36,4 +36,4 @@ tempscht
 ```
 ## Almanac vs NWSOmaha
 
-The Old Farmer's Almanac 2021's December Average High Prediction is 33.5°F. Meanwhile, the calculated average high from NWS Omaha predictions is `r average_high <- mean(temps[,2]);average_high`°F. It appears the astrometeorological prediction is below the observations of the NWS Office at Valley, NE.
+The Old Farmer's Almanac 2021's December Average High Prediction is 33.5°F. Meanwhile, the calculated average high from NWS Omaha predictions is `r average_high <- floor(mean(temps[,2]));average_high`°F. It appears the astrometeorological prediction is below the observations of the NWS Office at Valley, NE.
