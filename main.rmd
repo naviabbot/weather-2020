@@ -16,12 +16,13 @@ library(dygraphs)
 ```{r message=FALSE,echo=FALSE}
 # craft data frame
 temps <- read.csv("weather.csv")
-rownames(temps) = as.Date(as.character(temps$date), "%Y%m%d")
+rownames(temps) = as.Date(as.character(temps$date), "%Y-%m-%d")
 ```
 
 ```{r}
 graph_it <- as.xts(temps[-1])
 dygraph(graph_it, main = "Highs and Lows of the Month of December, 2020") %>%
+  dyOptions(drawGrid=FALSE) %>%
   dyAxis("y", label = "Degrees Fahrenheit") %>%
   dySeries("high", label = "Highs") %>%
   dySeries("low", label = "Lows")
