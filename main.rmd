@@ -11,6 +11,8 @@ library(readr)
 library(dplyr)
 library(xts)
 library(dygraphs)
+library(htmlwidgets)
+library(webshot)
 ```
 
 ```{r message=FALSE,echo=FALSE}
@@ -21,11 +23,16 @@ rownames(temps) = as.Date(as.character(temps$date), "%Y-%m-%d")
 
 ```{r}
 graph_it <- as.xts(temps[-1])
-dygraph(graph_it, main = "Highs and Lows of the Month of December, 2020") %>%
+da_chart <- dygraph(graph_it, main = "Highs and Lows of the Month of December, 2020") %>%
   dyOptions(drawGrid=FALSE) %>%
   dyAxis("y", label = "Degrees Fahrenheit") %>%
   dySeries("high", label = "Highs") %>%
   dySeries("low", label = "Lows")
+
+da_chart
+
+htmlwidgets::saveWidget(widget = da_chart, file = "dy.html")
+webshot(url = "dy.html", file = "dy.png", delay = 1, zoom = 4, vheight = 500)
 ```
 ## Table of Highs, Lows, and Averages
 All temps in Fahrenheit. Sorry Metric World.
