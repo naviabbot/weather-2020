@@ -3,7 +3,7 @@ title: "December of 2020's Highs"
 output: html_notebook
 ---
 
-#### Data was pulled from the NWS Omaha.
+Data was pulled from the National Weather Service - Omaha (Known as NWSOmaha through out this report).
 
 ```{r warning=FALSE,message=FALSE,echo=FALSE}
 # Loading Libraries
@@ -31,6 +31,7 @@ da_chart <- dygraph(graph_it, main = "Highs and Lows of the Month of December, 2
 
 da_chart
 
+# Saving to an image to post later.
 htmlwidgets::saveWidget(widget = da_chart, file = "dy.html")
 webshot(url = "dy.html", file = "dy.png", delay = 1, zoom = 4, vheight = 500)
 ```
@@ -44,4 +45,7 @@ tempscht
 ```
 ## Almanac vs NWSOmaha
 
-The Old Farmer's Almanac 2021's December Average High Prediction is 33.5°F. Meanwhile, the calculated average high from NWS Omaha predictions is `r average_high <- floor(mean(temps[,2]));average_high`°F. It appears the astrometeorological prediction is below the observations of the NWS Office at Valley, NE.
+The Old Farmer's Almanac 2021's December Average High Prediction is 33.5°F. Meanwhile, the calculated average high from NWSOmaha predictions is `r average_high <- floor(mean(temps[,2]));average_high`°F. It appears the astrometeorological prediction is below the observations of the NWS Office at Valley, NE.
+
+## Fluffy White
+December brought in two major winter storms. The first was on the 22d, bringing in 1.5" of snowfall, less than the 1948 record. The second was on the 29th. Data for the 29th is inconclusive and will be added once the reports are in from NWSOmaha.
